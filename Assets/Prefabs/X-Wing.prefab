@@ -635,6 +635,7 @@ GameObject:
   - component: {fileID: -7192290317622177265}
   - component: {fileID: 4412791167597510750}
   - component: {fileID: -5668138568759517361}
+  - component: {fileID: 4795212907628316044}
   m_Layer: 0
   m_Name: X-wing
   m_TagString: Untagged
@@ -693,6 +694,9 @@ MonoBehaviour:
   target: {fileID: 0}
   leader: {fileID: 0}
   isLeader: 0
+  isShooing: 0
+  rateOfFire: 1
+  laserBullet: {fileID: 0}
 --- !u!114 &-4777206713811210913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,6 +830,23 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014491410874902213}
   m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8833d4c7c38714704b3beacda2f49fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  leader: {fileID: 0}
+  slowingDistance: 10
+--- !u!114 &4795212907628316044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014491410874902213}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8833d4c7c38714704b3beacda2f49fbd, type: 3}
   m_Name: 

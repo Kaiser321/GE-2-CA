@@ -1873,9 +1873,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3600226993308565566}
   - component: {fileID: 7211996050090475192}
+  - component: {fileID: -6202078527571911474}
+  - component: {fileID: -5834876228788058761}
+  - component: {fileID: 8684666501681071864}
   - component: {fileID: 2337768596593316832}
   - component: {fileID: 1404275537156295596}
-  - component: {fileID: 8684666501681071864}
+  - component: {fileID: 3843740125998310635}
+  - component: {fileID: 7625130915558507863}
   m_Layer: 0
   m_Name: TIE-Fighter
   m_TagString: Untagged
@@ -1918,7 +1922,7 @@ MonoBehaviour:
   banking: 0.05
   maxSpeed: 15
   maxForce: 30
---- !u!114 &2337768596593316832
+--- !u!114 &-6202078527571911474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1926,6 +1930,63 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4232613771410823812}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3118a8dc6cf4918a36de035dd9e0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  target: {fileID: 0}
+  leader: {fileID: 0}
+  isLeader: 0
+  isShooing: 0
+  rateOfFire: 1
+  laserBullet: {fileID: 0}
+--- !u!114 &-5834876228788058761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232613771410823812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36bdd31cc1b594c488be07c4a09c773b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updatesPerSecond: 5
+--- !u!114 &8684666501681071864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232613771410823812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1049cb9fa27ef4aa9b2e9e100fa0c915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  scale: 1
+  forwardFeelerDepth: 20
+  sideFeelerDepth: 20
+  frontFeelerUpdatesPerSecond: 10
+  sideFeelerUpdatesPerSecond: 10
+  feelerRadius: 10
+  forceType: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &2337768596593316832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232613771410823812}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6956e0719d26c40c1a3b2dc14db3688d, type: 3}
   m_Name: 
@@ -1947,13 +2008,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4232613771410823812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bc2223a220c84e80b16c39d457a9057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
---- !u!114 &8684666501681071864
+--- !u!114 &3843740125998310635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1962,22 +2023,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 4232613771410823812}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1049cb9fa27ef4aa9b2e9e100fa0c915, type: 3}
+  m_Script: {fileID: 11500000, guid: 22915662c7ac44519874c021c75daf72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
-  scale: 1
-  forwardFeelerDepth: 20
-  sideFeelerDepth: 20
-  frontFeelerUpdatesPerSecond: 10
-  sideFeelerUpdatesPerSecond: 10
-  feelerRadius: 10
-  forceType: 0
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  target: {fileID: 0}
+--- !u!114 &7625130915558507863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232613771410823812}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3949f0720da45809e395de758a0de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  targetGameObject: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
 --- !u!1 &4454113517438504437
 GameObject:
   m_ObjectHideFlags: 0
