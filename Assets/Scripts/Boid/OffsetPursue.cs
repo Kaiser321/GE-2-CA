@@ -8,9 +8,10 @@ public class OffsetPursue : SteeringBehaviour
     Vector3 targetPos;
     Vector3 worldTarget;
     Vector3 offset;
+    public int slowingDistance = 10;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         offset = transform.position - leader.transform.position;
 
@@ -25,6 +26,6 @@ public class OffsetPursue : SteeringBehaviour
         float time = dist / boid.maxSpeed;
 
         targetPos = worldTarget + (leader.velocity * time);
-        return boid.ArriveForce(targetPos);
+        return boid.ArriveForce(targetPos, slowingDistance);
     }
 }

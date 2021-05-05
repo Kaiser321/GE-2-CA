@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1498000964184965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8064482314743188309}
+  - component: {fileID: 5289179206255396148}
+  m_Layer: 0
+  m_Name: Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8064482314743188309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498000964184965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8621173180411156112}
+  - {fileID: 1771297033169014872}
+  - {fileID: 6072408623929025894}
+  - {fileID: 6731089046573596248}
+  - {fileID: 2147916858244914394}
+  - {fileID: 1128044644107345720}
+  m_Father: {fileID: 4394816179122633855}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5289179206255396148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498000964184965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.3, z: 0.9}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &134285174670841181
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +63,7 @@ GameObject:
   - component: {fileID: 8807639268568583559}
   - component: {fileID: 1669743221063442308}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:wings_3
+  m_Name: Wings_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,12 +76,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134285174670841181}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.076854736, y: -0.0092255855, z: -0.24676932}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07685475, y: -0.009225586, z: -0.24676931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 3
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1805491289028169271
 MeshFilter:
@@ -109,7 +159,7 @@ GameObject:
   - component: {fileID: 5093988633293068566}
   - component: {fileID: 2689103833269263519}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:wings_4
+  m_Name: Wings_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,12 +172,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568254369962164638}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07246215, y: -0.014595493, z: -0.25196278}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.072462164, y: -0.014595493, z: -0.25196278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 4
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3906272960760722197
 MeshFilter:
@@ -205,7 +255,7 @@ GameObject:
   - component: {fileID: 5999126153631739045}
   - component: {fileID: 524196111940978750}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:droide
+  m_Name: Droid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,12 +268,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365695227932156178}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0008855152, y: 0.025194306, z: -0.2356609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.00088552636, y: 0.025194308, z: -0.23566091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 0
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8517376854006023720
 MeshFilter:
@@ -288,42 +338,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8438618834703360526, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
---- !u!1 &3331508073788739754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8671593092291134345}
-  m_Layer: 0
-  m_Name: mh_xwings_01:group1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8671593092291134345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3331508073788739754}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1771297033169014872}
-  - {fileID: 6072408623929025894}
-  - {fileID: 6731089046573596248}
-  - {fileID: 2147916858244914394}
-  - {fileID: 1128044644107345720}
-  - {fileID: 8621173180411156112}
-  m_Father: {fileID: 4394816179122633855}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4014491410874902213
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,10 +367,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014491410874902213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.01, y: 0, z: -1.08}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
-  - {fileID: 8671593092291134345}
+  - {fileID: 8064482314743188309}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -387,7 +401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014491410874902213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6956e0719d26c40c1a3b2dc14db3688d, type: 3}
   m_Name: 
@@ -472,7 +486,7 @@ GameObject:
   - component: {fileID: 2411219050464189858}
   - component: {fileID: 1601019462050003307}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:x_wings
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,12 +499,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059718073362721146}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00002368164, y: -0.0071199564, z: -0.14675644}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000023682913, y: -0.0071199564, z: -0.14675646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 5
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2696258286884563396
 MeshFilter:
@@ -568,7 +582,7 @@ GameObject:
   - component: {fileID: 4504835443201908774}
   - component: {fileID: 6491175052855119904}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:wings_1
+  m_Name: Wings_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -581,12 +595,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8264168868757849923}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06885849, y: 0.0114070065, z: -0.2506483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.068858504, y: 0.0114070065, z: -0.25064832}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 1
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2887914984197678266
 MeshFilter:
@@ -664,7 +678,7 @@ GameObject:
   - component: {fileID: 9003402590857804210}
   - component: {fileID: 8409085638382032945}
   m_Layer: 0
-  m_Name: mh_xwings_01:mh_xwings_00:wings_2
+  m_Name: Wings_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,12 +691,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8780265820803336708}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.063505135, y: 0.012203445, z: -0.2535008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.063505135, y: 0.012203446, z: -0.2535008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8671593092291134345}
-  m_RootOrder: 2
+  m_Father: {fileID: 8064482314743188309}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3896248967617752412
 MeshFilter:
