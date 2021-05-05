@@ -3,32 +3,12 @@ guid: a7c8c6e3cc0da42c1b53bc733eaf3ecc
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tex_0095_1.dds
-    second: {fileID: 2100000, guid: 49df4a7999e8843caaee2aed34b06906, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tex_0095_2.dds
-    second: {fileID: 2100000, guid: 973c89332fa954008a751024a655e718, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tex_0095_3.dds
-    second: {fileID: 2100000, guid: 523f0333b0e4844bbb9610ae435a8400, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tex_5040_1.dds
-    second: {fileID: 2100000, guid: 19dabb4efde7f4c48b8353e116372448, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
