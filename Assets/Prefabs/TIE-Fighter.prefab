@@ -2797,6 +2797,7 @@ GameObject:
   - component: {fileID: 5663064645890768531}
   - component: {fileID: 6703909449021164190}
   - component: {fileID: 6797810778885359429}
+  - component: {fileID: 8743930322450751665}
   m_Layer: 0
   m_Name: MainHull
   m_TagString: Untagged
@@ -2867,6 +2868,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8743930322450751665
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596738787034107541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4692933886655937151, guid: 6e67931ded82b4f7f8bc37904c2cc8f4, type: 3}
 --- !u!1 &4624220099997745664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2893,7 @@ GameObject:
   - component: {fileID: 4554034252757597007}
   - component: {fileID: 1370450815173746949}
   - component: {fileID: 1057704235862224473}
+  - component: {fileID: 5457605780005360726}
   m_Layer: 0
   m_Name: R_Pan_US
   m_TagString: Untagged
@@ -2948,6 +2964,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5457605780005360726
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624220099997745664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2877895261828800981, guid: 6e67931ded82b4f7f8bc37904c2cc8f4, type: 3}
 --- !u!1 &4626332689277607089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,6 +4016,7 @@ GameObject:
   - component: {fileID: 3444065629761719885}
   - component: {fileID: 3958813713583113621}
   - component: {fileID: 7297837660594340054}
+  - component: {fileID: 1017236258216626393}
   m_Layer: 0
   m_Name: L_Pan_US
   m_TagString: Untagged
@@ -4056,6 +4087,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1017236258216626393
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6348458899914841274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2597239279751076280, guid: 6e67931ded82b4f7f8bc37904c2cc8f4, type: 3}
 --- !u!1 &6397279588568565216
 GameObject:
   m_ObjectHideFlags: 0

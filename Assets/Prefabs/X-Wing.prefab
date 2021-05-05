@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2147916858244914394}
   - component: {fileID: 1805491289028169271}
   - component: {fileID: 8807639268568583559}
+  - component: {fileID: 1669743221063442308}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:wings_3
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1669743221063442308
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134285174670841181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1677342454236471018, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
 --- !u!1 &568254369962164638
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +107,7 @@ GameObject:
   - component: {fileID: 1128044644107345720}
   - component: {fileID: 3906272960760722197}
   - component: {fileID: 5093988633293068566}
+  - component: {fileID: 2689103833269263519}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:wings_4
   m_TagString: Untagged
@@ -162,6 +178,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2689103833269263519
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568254369962164638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5167255778610794649, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
 --- !u!1 &1365695227932156178
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +203,7 @@ GameObject:
   - component: {fileID: 1771297033169014872}
   - component: {fileID: 8517376854006023720}
   - component: {fileID: 5999126153631739045}
+  - component: {fileID: 524196111940978750}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:droide
   m_TagString: Untagged
@@ -243,6 +274,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &524196111940978750
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365695227932156178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8438618834703360526, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
 --- !u!1 &3331508073788739754
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +339,7 @@ GameObject:
   - component: {fileID: 1809922318161276227}
   - component: {fileID: 7706204211978473475}
   m_Layer: 0
-  m_Name: X-wing 1
+  m_Name: X-wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,6 +470,7 @@ GameObject:
   - component: {fileID: 8621173180411156112}
   - component: {fileID: 2696258286884563396}
   - component: {fileID: 2411219050464189858}
+  - component: {fileID: 1601019462050003307}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:x_wings
   m_TagString: Untagged
@@ -495,6 +541,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1601019462050003307
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059718073362721146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9082145277122271053, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
 --- !u!1 &8264168868757849923
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +566,7 @@ GameObject:
   - component: {fileID: 6072408623929025894}
   - component: {fileID: 2887914984197678266}
   - component: {fileID: 4504835443201908774}
+  - component: {fileID: 6491175052855119904}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:wings_1
   m_TagString: Untagged
@@ -576,6 +637,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6491175052855119904
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264168868757849923}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5400563107143214695, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
 --- !u!1 &8780265820803336708
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +662,7 @@ GameObject:
   - component: {fileID: 6731089046573596248}
   - component: {fileID: 3896248967617752412}
   - component: {fileID: 9003402590857804210}
+  - component: {fileID: 8409085638382032945}
   m_Layer: 0
   m_Name: mh_xwings_01:mh_xwings_00:wings_2
   m_TagString: Untagged
@@ -657,3 +733,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8409085638382032945
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8780265820803336708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6153381400307639337, guid: 8274c12f0fdde485c9db008d1f5d434a, type: 3}
