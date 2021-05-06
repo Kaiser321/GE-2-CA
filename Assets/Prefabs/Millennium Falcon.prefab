@@ -420,7 +420,7 @@ MonoBehaviour:
   usePQ: 1
   obstaclesLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 51
 --- !u!114 &6333565730166348669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,12 +449,12 @@ MonoBehaviour:
   weight: 1
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
-  scale: 1
-  forwardFeelerDepth: 30
-  sideFeelerDepth: 20
-  frontFeelerUpdatesPerSecond: 20
-  sideFeelerUpdatesPerSecond: 10
-  feelerRadius: 30
+  scale: 3
+  forwardFeelerDepth: 15
+  sideFeelerDepth: 5
+  frontFeelerUpdatesPerSecond: 100
+  sideFeelerUpdatesPerSecond: 100
+  feelerRadius: 1.5
   forceType: 0
   mask:
     serializedVersion: 2
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205177480825911085}
   - component: {fileID: 5996295669093418078}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
