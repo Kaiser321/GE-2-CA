@@ -81,6 +81,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &87876390295749067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6447730821533277317}
+  m_Layer: 0
+  m_Name: Turret (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6447730821533277317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87876390295749067}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7487948, y: -2.0162425, z: 2.689991}
+  m_LocalScale: {x: 11.117964, y: 11.117964, z: 11.117964}
+  m_Children: []
+  m_Father: {fileID: 6307763153466616165}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262922699720572398
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +192,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &607102162975762502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5587444807427743937}
+  m_Layer: 0
+  m_Name: Turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5587444807427743937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607102162975762502}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7437919, y: -2.0162425, z: 2.689991}
+  m_LocalScale: {x: 11.117964, y: 11.117964, z: 11.117964}
+  m_Children: []
+  m_Father: {fileID: 6307763153466616165}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773291248290663749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3118a8dc6cf4918a36de035dd9e0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 4
   target: {fileID: 0}
   leader: {fileID: 0}
   isLeader: 0
@@ -1944,6 +2004,9 @@ MonoBehaviour:
   rateOfFire: 2.5
   range: 20
   laserBullet: {fileID: 1398048494557503194, guid: da5cab18649b8421693ff1572cef4b5a, type: 3}
+  fireingPoints:
+  - {fileID: 87876390295749067}
+  - {fileID: 607102162975762502}
 --- !u!114 &-5834876228788058761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,12 +2036,12 @@ MonoBehaviour:
   weight: 1
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
-  scale: 5
-  forwardFeelerDepth: 10
-  sideFeelerDepth: 10
-  frontFeelerUpdatesPerSecond: 100
-  sideFeelerUpdatesPerSecond: 100
-  feelerRadius: 10
+  scale: 4
+  forwardFeelerDepth: 5
+  sideFeelerDepth: 3
+  frontFeelerUpdatesPerSecond: 50
+  sideFeelerUpdatesPerSecond: 50
+  feelerRadius: 3
   forceType: 0
   mask:
     serializedVersion: 2
@@ -2868,7 +2931,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5.996302, y: 5.996302, z: 5.996302}
-  m_Children: []
+  m_Children:
+  - {fileID: 6447730821533277317}
+  - {fileID: 5587444807427743937}
   m_Father: {fileID: 2595017086371979857}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

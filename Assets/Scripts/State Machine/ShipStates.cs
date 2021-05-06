@@ -197,9 +197,9 @@ public class Alive : State
 {
     public override void Think()
     {
-
         if (owner.GetComponent<ShipController>().health <= 0)
         {
+          
             owner.GetComponent<ShipController>().Explode();
         }
     }

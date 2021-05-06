@@ -24,13 +24,13 @@ public class ShipController : MonoBehaviour
         if (isLeader)
         {
             leader = GetComponent<Boid>();
+            //GetComponent<StateMachine>().SetGlobalState(new Alive());
             GetComponent<StateMachine>().ChangeState(new FindFalcon());
-            GetComponent<StateMachine>().SetGlobalState(new Alive());
         }
         else
         {
  
-            if(transform.parent.gameObject.name == "TIE-Fighter Squad")
+            if(transform.parent.gameObject.name.Contains("TIE-Fighter Squad"))
             {
                 leader = transform.parent.Find("TIE-Fighter Leader").gameObject.GetComponent<Boid>();
             }
@@ -51,7 +51,8 @@ public class ShipController : MonoBehaviour
             {
                 foreach(GameObject fp in fireingPoints)
                 {
-                    Instantiate(laserBullet, fp.transform.position, fp.transform.rotation);
+                    GameObject bullet = Instantiate(laserBullet, fp.transform.position, fp.transform.rotation);
+                    bullet.GetComponent<BulletController>().targetTag = transform.tag == "Tie-Fighter" ? "X-wing" : "Tie-Fighter";
                 }
 
             }
@@ -62,6 +63,14 @@ public class ShipController : MonoBehaviour
     public void Explode()
     {
         Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //public void OnTriggerEnter(Collider other)

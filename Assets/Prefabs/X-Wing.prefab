@@ -676,13 +676,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3118a8dc6cf4918a36de035dd9e0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 6
   target: {fileID: 0}
   leader: {fileID: 0}
   isLeader: 0
   isShooing: 0
-  rateOfFire: 1.75
-  range: 40
+  rateOfFire: 2
+  range: 50
   laserBullet: {fileID: 1398048494557503194, guid: 61eb5177da2714d69937941b850cef6c, type: 3}
   fireingPoints:
   - {fileID: 8748095690252043072}
