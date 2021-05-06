@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SceneController : MonoBehaviour
+{
+    public GameObject camera;
+    public GameObject falcon;
+
+    void Start()
+    {
+        GetComponent<StateMachine>().ChangeState(new Scene1());
+    }
+
+   public void DestoryObject(GameObject g)
+    {
+        Destroy(g);
+    }
+}
+
