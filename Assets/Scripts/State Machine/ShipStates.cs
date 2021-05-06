@@ -12,17 +12,106 @@ class FollowingLeader : State
 
     public override void Think()
     {
-
+        string tag;
+        if (owner.gameObject.tag == "Tie-Fighter")
+        {
+            tag = "X-wing";
+        }
+        else
+        {
+            tag = "Tie-Fighter";
+        }
+        GameObject[] ships = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject ship in ships)
+        {
+            if (Vector3.Distance(owner.transform.position, ship.transform.position) <= 50)
+            {
+                ship.GetComponent<ShipController>().target = owner.gameObject;
+                ship.GetComponent<StateMachine>().ChangeState(new Fleeing());
+                owner.GetComponent<ShipController>().target = ship;
+                owner.ChangeState(new Pursuing());
+            }
+        }
     }
 
     public override void Exit()
     {
-        owner.GetComponent<OffsetPursue>().enabled = false;
+        offsetPursue.enabled = false;
     }
 }
 
 
-class PursuingTarget : State
+//class Patrol : State
+//{
+//    FollowPath followPath;
+//    PathFinder pathFinder;
+//    public override void Enter()
+//    {
+//        followPath = owner.GetComponent<FollowPath>();
+//        pathFinder = owner.GetComponent<PathFinder>();
+//        owner.GetComponent<ShipController>().target = GameObject.Find("Millennium Falcon");
+//        pathFinder.end = owner.GetComponent<ShipController>().target.transform;
+//        followPath.enabled = true;
+//        pathFinder.enabled = true;
+//    }
+
+//    public override void Think()
+//    {
+
+//    }
+
+//    public override void Exit()
+//    {
+//        followPath.enabled = false;
+//        pathFinder.enabled = false;
+//    }
+//}
+
+class FindFalcon : State
+{
+    Pursue pursue;
+    public override void Enter()
+    {
+        owner.GetComponent<ShipController>().isShooing = false;
+        pursue = owner.GetComponent<Pursue>();
+        pursue.enabled = true;
+        owner.GetComponent<ShipController>().target = GameObject.Find("Millennium Falcon");
+        pursue.target = owner.GetComponent<ShipController>().target.GetComponent<Boid>();
+    }
+
+    public override void Think()
+    {
+        string tag;
+        if (owner.gameObject.tag == "Tie-Fighter")
+        {
+            tag = "X-wing";
+        }
+        else
+        {
+            tag = "Tie-Fighter";
+        }
+        GameObject[] ships = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject ship in ships)
+        {
+            if (Vector3.Distance(owner.transform.position, ship.transform.position) < 20)
+            {
+                ship.GetComponent<ShipController>().target = owner.gameObject;
+                ship.GetComponent<StateMachine>().ChangeState(new Fleeing());
+                owner.GetComponent<ShipController>().target = ship;
+                owner.ChangeState(new Pursuing());
+                break;
+            }
+        }
+    }
+
+    public override void Exit()
+    {
+        pursue.enabled = false;
+    }
+}
+
+class Pursuing : State
 {
     Pursue pursue;
     public override void Enter()
@@ -34,42 +123,87 @@ class PursuingTarget : State
 
     public override void Think()
     {
-        if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+        if (pursue.target == null)
         {
-            owner.ChangeState(new Attacking());
+            owner.ChangeState(new FindFalcon());
         }
+        if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < owner.GetComponent<ShipController>().range)
+        {
+            owner.GetComponent<ShipController>().isShooing = true;
+        }
+        else
+        {
+            owner.GetComponent<ShipController>().isShooing = false;
+        }
+
+        if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 2)
+        {
+            owner.ChangeState(new FindFalcon());
+        }
+
+        if (pursue.target.gameObject == owner.gameObject)
+        {
+            owner.GetComponent<ShipController>().target = pursue.target.gameObject;
+            owner.GetComponent<StateMachine>().ChangeState(new Fleeing());
+        }
+
+
     }
 
     public override void Exit()
     {
-        owner.GetComponent<Pursue>().enabled = false;
-    }
-}
-
-class Attacking : State
-{
-    public override void Enter()
-    {
-        owner.GetComponent<ShipController>().isShooing = true;
-    }
-
-    public override void Think()
-    {
-
-    }
-
-    public override void Exit()
-    {
-
+        owner.GetComponent<ShipController>().isShooing = false;
+        pursue.enabled = false;
     }
 }
 
 
 class Fleeing : State
 {
+    Flee flee;
+    GameObject falcon;
+    public override void Enter()
+    {
+        falcon = GameObject.Find("Millennium Falcon");
+        flee = owner.GetComponent<Flee>();
+        flee.enabled = true;
+        flee.targetGameObject = owner.GetComponent<ShipController>().target;
+    }
 
+    public override void Think()
+    {
+        if (flee.target == null)
+        {
+            owner.ChangeState(new FindFalcon());
+        }
+
+        if (Vector3.Distance(owner.transform.position, falcon.transform.position) > 50)
+        {
+            owner.GetComponent<ShipController>().isShooing = true;
+            owner.ChangeState(new FindFalcon());
+        }
+
+
+
+    }
+
+    public override void Exit()
+    {
+        flee.enabled = false;
+    }
 }
 
+public class Alive : State
+{
+    public override void Think()
+    {
+
+        if (owner.GetComponent<ShipController>().health <= 0)
+        {
+            owner.GetComponent<ShipController>().Explode();
+        }
+    }
+}
 
 
 //class PatrolState : State

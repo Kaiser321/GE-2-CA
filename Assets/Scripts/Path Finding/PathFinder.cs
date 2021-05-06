@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-    
+
 public class PathFinder : MonoBehaviour
 {
-    public float gridSize = 5.0f; 
+    public float gridSize = 5.0f;
     public string message = "";
     public bool isThreeD = false;
 
@@ -14,7 +14,7 @@ public class PathFinder : MonoBehaviour
     PriorityQueue<Node> openPQ = new PriorityQueue<Node>();
 
     Dictionary<Vector3, Node> closed = new Dictionary<Vector3, Node>(20000);
-   
+
     Vector3 startPos, endPos;
 
     public Transform start, end;
@@ -23,13 +23,13 @@ public class PathFinder : MonoBehaviour
 
     public bool usePQ = true;
 
-    public void OnDrawGizmos()
-    {
-        if (! Application.isPlaying)
-        {
-            FindPath(start.position, end.position);    
-        }
-    }
+    //public void OnDrawGizmos()
+    //{
+    //    if (! Application.isPlaying)
+    //    {
+    //        FindPath(start.position, end.position);    
+    //    }
+    //}
 
     public void Start()
     {
@@ -84,7 +84,7 @@ public class PathFinder : MonoBehaviour
                 current = openPQ.Dequeue();
             }
             else
-            {            
+            {
                 // Get the top of the q
                 float min = float.MaxValue;
                 foreach (Node node in open.Values)
@@ -105,7 +105,9 @@ public class PathFinder : MonoBehaviour
             open.Remove(current.pos);
             closed[current.pos] = current;
         }
+
         Path path = GetComponent<Path>();
+
         if (found)
         {
             path.waypoints.Clear();
@@ -116,9 +118,8 @@ public class PathFinder : MonoBehaviour
                 current = current.parent;
             }
             path.waypoints.Add(current.pos);
-            path.waypoints.Add(this.end.position); 
+            path.waypoints.Add(this.end.position);
             message = "A * took: " + stopwatch.ElapsedMilliseconds + " milliseconds. Open list: " + maxSize;
-
         }
         else
         {
@@ -130,7 +131,7 @@ public class PathFinder : MonoBehaviour
             {
                 message = "No path found. Open list: " + maxSize;
             }
-            
+
         }
         if (smooth)
         {
@@ -142,25 +143,26 @@ public class PathFinder : MonoBehaviour
     private void addAdjacentNodes(Node current)
     {
 
-        for(int x = -1 ; x <= 1 ; x ++)
+        for (int x = -1; x <= 1; x++)
         {
             int yrange = isThreeD ? 1 : 0;
-            for(int y = - yrange ; y <= yrange ; y ++)
+            for (int y = -yrange; y <= yrange; y++)
             {
-                for(int z = -1 ; z <= 1 ; z ++)
+                for (int z = -1; z <= 1; z++)
                 {
-                    if (! (x == 0 && y == 0 && z == 0))
+                    if (!(x == 0 && y == 0 && z == 0))
                     {
                         Vector3 pos = current.pos + new Vector3(x * gridSize, y * gridSize, z * gridSize);
                         AddIfValid(pos, current);
                     }
                 }
-            }    
-        }        	        
+            }
+        }
     }
 
     private void AddIfValid(Vector3 pos, Node parent)
     {
+
         if ((!RayTrace(parent.pos, pos)))
         {
             if (!closed.ContainsKey(pos))

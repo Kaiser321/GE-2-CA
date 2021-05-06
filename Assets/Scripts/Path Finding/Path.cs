@@ -10,7 +10,6 @@ public class Path : MonoBehaviour {
     
     public void OnDrawGizmos()
     {
-        
         if (transform.childCount > 0 )
         {
             PopulateWaypoints();

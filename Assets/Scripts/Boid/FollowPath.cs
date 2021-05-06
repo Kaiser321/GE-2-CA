@@ -15,9 +15,9 @@ public class FollowPath : SteeringBehaviour
     public int next = 0;
     public bool looped = true;
 
-    public void Start()
+    void Start()
     {
-        
+
     }
 
     public void OnDrawGizmos()

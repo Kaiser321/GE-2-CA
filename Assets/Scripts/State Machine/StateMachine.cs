@@ -13,6 +13,7 @@ public abstract class State
 public class StateMachine : MonoBehaviour {
 
     public State currentState;
+    public string s;
     public State globalState;
     public State previousState;
 
@@ -32,8 +33,9 @@ public class StateMachine : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        s = currentState.GetType().Name;
+
+    }
 
     public void ChangeStateDelayed(State newState, float delay)
     {

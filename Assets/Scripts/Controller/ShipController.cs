@@ -9,8 +9,10 @@ public class ShipController : MonoBehaviour
     public Boid leader;
     public bool isLeader = false;
     public bool isShooing = false;
-    public int rateOfFire = 1;
+    public float rateOfFire = 1;
+    public float range = 30;
     public GameObject laserBullet;
+    public GameObject[] fireingPoints;
 
     public void OnEnable()
     {
@@ -22,11 +24,21 @@ public class ShipController : MonoBehaviour
         if (isLeader)
         {
             leader = GetComponent<Boid>();
-            GetComponent<StateMachine>().ChangeState(new PursuingTarget());
+            GetComponent<StateMachine>().ChangeState(new FindFalcon());
+            GetComponent<StateMachine>().SetGlobalState(new Alive());
         }
         else
         {
-            leader = transform.parent.Find("X-wing Leader").gameObject.GetComponent<Boid>();
+ 
+            if(transform.parent.gameObject.name == "TIE-Fighter Squad")
+            {
+                leader = transform.parent.Find("TIE-Fighter Leader").gameObject.GetComponent<Boid>();
+            }
+            else
+            {
+                leader = transform.parent.Find("X-wing Leader").gameObject.GetComponent<Boid>();
+            }
+
             GetComponent<StateMachine>().ChangeState(new FollowingLeader());
         }
     }
@@ -37,11 +49,25 @@ public class ShipController : MonoBehaviour
         {
             if (isShooing)
             {
-                Instantiate(laserBullet, transform.position + transform.forward * 2, transform.rotation);
+                foreach(GameObject fp in fireingPoints)
+                {
+                    Instantiate(laserBullet, fp.transform.position, fp.transform.rotation);
+                }
+
             }
             yield return new WaitForSeconds(1.0f / rateOfFire);
         }
     }
+
+    public void Explode()
+    {
+        Destroy(gameObject);
+    }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log(other);
+    //}
 
 }
 
