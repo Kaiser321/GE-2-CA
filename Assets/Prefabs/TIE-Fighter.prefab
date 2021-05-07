@@ -637,7 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4695255412856379569}
   m_Layer: 0
-  m_Name: 3rd Person Camera Position
+  m_Name: 3rd Person Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -991,8 +991,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7890775159890592934}
   m_Layer: 0
-  m_Name: Top Camera Position
-  m_TagString: Untagged
+  m_Name: Top Follow Cam
+  m_TagString: Follow Cam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2103,6 +2103,7 @@ MonoBehaviour:
   cameraPositions:
   - {fileID: 2230396800263493951}
   - {fileID: 1487876099582543555}
+  foundPath: 0
 --- !u!114 &-5834876228788058761
 MonoBehaviour:
   m_ObjectHideFlags: 0

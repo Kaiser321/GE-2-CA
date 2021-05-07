@@ -41,4 +41,8 @@ public class BulletController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        Debug.Log("OnDestroy1");
+    }
 }

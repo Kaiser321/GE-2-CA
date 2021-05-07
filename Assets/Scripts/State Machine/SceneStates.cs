@@ -203,7 +203,7 @@ class Scene6 : State
 
     public override void Think()
     {
-        if (falcon.GetComponent<ShipController>().health <= 80)
+        if (falcon.GetComponent<ShipController>().health <= 50)
         {
             owner.ChangeState(new Scene7());
         }
@@ -232,7 +232,6 @@ class Scene6 : State
 
     public override void Exit()
     {
-        owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
         falcon.GetComponent<NoiseWander>().enabled = false;
         falcon.GetComponent<Flee>().enabled = false;
     }
@@ -259,7 +258,7 @@ class Scene7 : State
         cluster = spawner.SpawnAsteroidCluster(falcon.transform.position + falcon.transform.forward * 100, new Vector3(100, 50, 500), 150);
 
         sceneTarget = new GameObject("Target");
-        sceneTarget.transform.position = cluster.transform.position + cluster.transform.forward * 550;
+        sceneTarget.transform.position = cluster.transform.position + cluster.transform.forward * 700;
         startTarget = new GameObject("Start Target");
         startTarget.transform.position = cluster.transform.position + cluster.transform.forward * (-20);
 
@@ -274,35 +273,64 @@ class Scene7 : State
 
     public override void Think()
     {
-        if (falcon.GetComponent<ShipController>().health <= 0)
+        if (Vector3.Distance(falcon.transform.position, sceneTarget.transform.position) <= 40)
         {
-            owner.ChangeState(new Scene7());
+            owner.ChangeState(new Scene8());
         }
-
-        int rand = Random.Range(0, 2);
-        if (rand == 0)
-        {
-            falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
-        }
-        else
-        {
-            tieLeader.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
-        }
-
-
-        rand = Random.Range(0, 2);
-        if (rand == 0)
-        {
-            falcon.GetComponent<Boid>().maxSpeed = 10;
-        }
-        else
-        {
-            falcon.GetComponent<Boid>().maxSpeed = 12;
-        }
+        falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
     }
 
     public override void Exit()
     {
-        falcon.GetComponent<NoiseWander>().enabled = false;
+        owner.GetComponent<SceneController>().DestoryObject(cluster);
+        owner.GetComponent<SceneController>().DestoryObject(sceneTarget);
+        owner.GetComponent<SceneController>().DestoryObject(startTarget);
+        falcon.GetComponent<ShipController>().target = tieLeader;
+        falcon.GetComponent<StateMachine>().ChangeState(new Fleeing());
+        tieLeader.GetComponent<StateMachine>().ChangeState(new FindFalcon());
+        camera.transform.parent = null;
+        camera.GetComponent<FollowCamera>().enabled = true;
+    }
+}
+
+class Scene8 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject xwingLeader;
+    public override void Enter()
+    {
+
+        owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
+
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        spawner = owner.GetComponent<Spawner>();
+
+        spawner.SpawnTIEFighterSquad(falcon.transform.position - (falcon.transform.forward * 200), falcon.transform);
+
+
+        //foreach (GameObject t in spawner.ties)
+        //{
+        //    t.transform.position = falcon.transform.position - (falcon.transform.forward * 100);
+        //    t.GetComponent<StateMachine>().ChangeState(new FindFalcon());
+        //}
+
+        GameObject s = spawner.SpawnXWingSquad(falcon.transform.position + (falcon.transform.up  * 50) + (falcon.transform.forward * 100), falcon.transform);
+        xwingLeader = s.transform.Find("X-wing Leader").gameObject;
+        camera.GetComponent<FollowCamera>().enabled = true;
+        camera.transform.position = s.transform.position + (s.transform.forward * 20) + (s.transform.up * 20)+(s.transform.right * 30);
+        camera.GetComponent<FollowCamera>().target = xwingLeader;
+    }
+
+    public override void Think()
+    {
+
+    }
+
+    public override void Exit()
+    {
+
     }
 }

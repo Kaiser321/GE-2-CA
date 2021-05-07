@@ -8,6 +8,8 @@ TagManager:
   - X-wing
   - Falcon
   - Bullet
+  - Follow Cam
+  - Tracking Cam
   layers:
   - Default
   - TransparentFX

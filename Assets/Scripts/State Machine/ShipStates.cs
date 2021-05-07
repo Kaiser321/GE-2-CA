@@ -148,7 +148,7 @@ class Pursuing : State
 
     public override void Think()
     {
-        if (pursue.target == null)
+        if (pursue.target.GetComponent<ShipController>().health <= 0)
         {
             owner.ChangeState(new FindFalcon());
         }
@@ -192,8 +192,6 @@ class Fleeing : State
         flee.enabled = true;
 
         flee.targetGameObject = owner.GetComponent<ShipController>().target;
-
-
     }
 
     public override void Think()
@@ -211,7 +209,7 @@ class Fleeing : State
 
             if (Vector3.Distance(owner.transform.position, falcon.transform.position) > 50)
             {
-                owner.GetComponent<ShipController>().isShooing = true;
+                //owner.GetComponent<ShipController>().isShooing = true;
                 owner.ChangeState(new FindFalcon());
             }
         }
@@ -224,17 +222,17 @@ class Fleeing : State
     }
 }
 
-public class Alive : State
-{
-    public override void Think()
-    {
-        if (owner.GetComponent<ShipController>().health <= 0)
-        {
+//public class Alive : State
+//{
+//    public override void Think()
+//    {
+//        if (owner.GetComponent<ShipController>().health <= 0)
+//        {
 
-            owner.GetComponent<ShipController>().Explode();
-        }
-    }
-}
+//            owner.GetComponent<ShipController>().Explode();
+//        }
+//    }
+//}
 
 
 //class PatrolState : State

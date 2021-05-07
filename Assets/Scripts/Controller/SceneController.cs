@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        GetComponent<StateMachine>().ChangeState(new Scene1());
+        GetComponent<StateMachine>().ChangeState(new Scene8());
     }
 
    public void DestoryObject(GameObject g)

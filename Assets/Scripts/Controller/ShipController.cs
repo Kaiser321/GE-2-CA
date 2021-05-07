@@ -15,6 +15,7 @@ public class ShipController : MonoBehaviour
     public GameObject[] fireingPoints;
     public GameObject[] cameraPositions;
     public bool foundPath = false;
+    public Spawner spawner;
 
     public void OnEnable()
     {
@@ -68,23 +69,44 @@ public class ShipController : MonoBehaviour
 
     public void AssignRandomCameraPosition(Camera cam)
     {
+        cam.transform.parent = null;
+
+        if (cam.GetComponent<FollowCamera>().enabled)
+        {
+            cam.GetComponent<FollowCamera>().enabled = false;
+        }
 
         GameObject camPos = cameraPositions[Random.Range(0, cameraPositions.Length)];
-        cam.transform.parent = camPos.transform;
+        if (camPos.tag == "Follow Cam")
+        {
+            cam.transform.parent = camPos.transform;
+        }
+
+        if (camPos.tag == "Tracking Cam")
+        {
+            cam.GetComponent<FollowCamera>().target = gameObject;
+            cam.GetComponent<FollowCamera>().enabled = true;
+        }
+
+
         cam.transform.position = camPos.transform.position;
         cam.transform.rotation = camPos.transform.rotation;
     }
 
-    public void Explode()
-    {
-        Destroy(gameObject);
-    }
+    //public void Explode()
+    //{
+    //    gameObject.SetActive(false);
+
+    //    Destroy(gameObject,3);
+    //}
 
     private void Update()
     {
         if (health <= 0 && tag != "Falcon")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            spawner.RemoveShip(gameObject);
+            Destroy(gameObject,3);
         }
     }
 

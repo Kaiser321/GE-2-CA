@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public GameObject xwingPrefab;
     public GameObject tiePrefab;
     public GameObject asteriodPrefab;
+    public List<GameObject> xwings = new List<GameObject>();
+    public List<GameObject> ties = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +22,17 @@ public class Spawner : MonoBehaviour
         GameObject leader = Instantiate(xwingPrefab);
         leader.name = "X-wing Leader";
         leader.GetComponent<ShipController>().isLeader = true;
+        leader.GetComponent<ShipController>().spawner = this;
         leader.transform.parent = squad.transform;
-
+        xwings.Add(leader);
         foreach (int g in gap)
         {
             GameObject fighter = Instantiate(xwingPrefab, squad.transform);
             fighter.name = "X-wing";
+            fighter.GetComponent<ShipController>().spawner = this;
             fighter.transform.position = new Vector3(g, 0, 0);
             fighter.transform.parent = squad.transform;
+            xwings.Add(fighter);
         }
 
         squad.transform.position = pos;
@@ -42,14 +47,18 @@ public class Spawner : MonoBehaviour
         GameObject leader = Instantiate(tiePrefab);
         leader.name = "TIE-Fighter Leader";
         leader.GetComponent<ShipController>().isLeader = true;
+        leader.GetComponent<ShipController>().spawner = this;
         leader.transform.parent = squad.transform;
+        ties.Add(leader);
 
         foreach (int g in gap)
         {
             GameObject fighter = Instantiate(tiePrefab, squad.transform);
             fighter.name = "TIE-Fighter";
+            fighter.GetComponent<ShipController>().spawner = this;
             fighter.transform.position = new Vector3(g, 0, 0);
             fighter.transform.parent = squad.transform;
+            ties.Add(fighter);
         }
 
         squad.transform.position = pos;
@@ -82,5 +91,17 @@ public class Spawner : MonoBehaviour
        (Random.value - 0.5f) * size.x,
        (Random.value - 0.5f) * size.y,
        (Random.value) * size.z);
+    }
+
+    public void RemoveShip(GameObject ship)
+    {
+        if (ship.tag == "X-wing")
+        {
+            xwings.Remove(ship);
+        }
+        else
+        {
+            ties.Remove(ship);
+        }
     }
 }
