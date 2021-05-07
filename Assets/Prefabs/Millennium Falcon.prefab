@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 4562230732273674281}
   - component: {fileID: -6881613881696155210}
   - component: {fileID: 6819940470823699092}
-  - component: {fileID: -5915612603439203774}
+  - component: {fileID: 8874085393072023200}
   - component: {fileID: -3893358576034343127}
   - component: {fileID: -7547490982853771536}
   - component: {fileID: -4292063763306769949}
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: 
   updatesPerSecond: 5
---- !u!114 &-5915612603439203774
+--- !u!114 &8874085393072023200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,18 +670,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3754766244570116755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3118a8dc6cf4918a36de035dd9e0cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bfdc6d9a62694bceabb5b7307f79eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  target: {fileID: 0}
-  leader: {fileID: 0}
-  isLeader: 0
-  isShooing: 0
-  rateOfFire: 1
-  range: 30
-  laserBullet: {fileID: 0}
-  fireingPoints: []
 --- !u!114 &-3893358576034343127
 MonoBehaviour:
   m_ObjectHideFlags: 0

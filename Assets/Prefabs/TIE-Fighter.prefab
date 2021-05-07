@@ -2036,11 +2036,11 @@ MonoBehaviour:
   weight: 1
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
-  scale: 4
-  forwardFeelerDepth: 5
-  sideFeelerDepth: 3
-  frontFeelerUpdatesPerSecond: 50
-  sideFeelerUpdatesPerSecond: 50
+  scale: 3
+  forwardFeelerDepth: 10
+  sideFeelerDepth: 5
+  frontFeelerUpdatesPerSecond: 100
+  sideFeelerUpdatesPerSecond: 100
   feelerRadius: 3
   forceType: 0
   mask:

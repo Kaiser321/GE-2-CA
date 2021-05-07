@@ -85,12 +85,22 @@ class FindFalcon : State
         if (owner.gameObject.tag == "Tie-Fighter")
         {
             tag = "X-wing";
+            if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+            {
+                owner.ChangeState(new Pursuing());
+            }
         }
         else
         {
             tag = "Tie-Fighter";
+            if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+            {
+                owner.GetComponent<ShipController>().leader = pursue.target;
+                owner.ChangeState(new FollowingLeader());
+            }
         }
         GameObject[] ships = GameObject.FindGameObjectsWithTag(tag);
+
 
         foreach (GameObject ship in ships)
         {
@@ -103,6 +113,7 @@ class FindFalcon : State
                 break;
             }
         }
+
     }
 
     public override void Exit()
@@ -146,8 +157,6 @@ class Pursuing : State
             owner.GetComponent<ShipController>().target = pursue.target.gameObject;
             owner.GetComponent<StateMachine>().ChangeState(new Fleeing());
         }
-
-
     }
 
     public override void Exit()
@@ -172,18 +181,23 @@ class Fleeing : State
 
     public override void Think()
     {
-        if (flee.target == null)
+        if (owner.tag == "Falcon")
         {
-            owner.ChangeState(new FindFalcon());
-        }
 
-        if (Vector3.Distance(owner.transform.position, falcon.transform.position) > 50)
+        }
+        else
         {
-            owner.GetComponent<ShipController>().isShooing = true;
-            owner.ChangeState(new FindFalcon());
+            if (flee.target == null)
+            {
+                owner.ChangeState(new FindFalcon());
+            }
+
+            if (Vector3.Distance(owner.transform.position, falcon.transform.position) > 50)
+            {
+                owner.GetComponent<ShipController>().isShooing = true;
+                owner.ChangeState(new FindFalcon());
+            }
         }
-
-
 
     }
 
@@ -199,7 +213,7 @@ public class Alive : State
     {
         if (owner.GetComponent<ShipController>().health <= 0)
         {
-          
+
             owner.GetComponent<ShipController>().Explode();
         }
     }

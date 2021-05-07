@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    public GameObject camera;
+    public Camera camera;
     public GameObject falcon;
 
     void Start()
