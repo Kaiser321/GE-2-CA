@@ -31,9 +31,17 @@ public class PathFinder : MonoBehaviour
     //    }
     //}
 
+
     public void Start()
     {
+        //FindPath(start.position, end.position);
+    }
+
+    public void OnEnable()
+    {
+        Debug.Log("FINDING PATH");
         FindPath(start.position, end.position);
+
     }
 
     Vector3 PositionToVoxel(Vector3 v)

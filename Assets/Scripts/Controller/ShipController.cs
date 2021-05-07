@@ -14,6 +14,7 @@ public class ShipController : MonoBehaviour
     public GameObject laserBullet;
     public GameObject[] fireingPoints;
     public GameObject[] cameraPositions;
+    public bool foundPath = false;
 
     public void OnEnable()
     {
@@ -22,7 +23,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        if(tag != "Falcon")
+        if (tag != "Falcon")
         {
             if (isLeader)
             {
@@ -54,7 +55,7 @@ public class ShipController : MonoBehaviour
         {
             if (isShooing)
             {
-                foreach(GameObject fp in fireingPoints)
+                foreach (GameObject fp in fireingPoints)
                 {
                     GameObject bullet = Instantiate(laserBullet, fp.transform.position, fp.transform.rotation);
                     bullet.GetComponent<BulletController>().targetTag = transform.tag == "Tie-Fighter" ? "X-wing" : "Tie-Fighter";
@@ -81,7 +82,7 @@ public class ShipController : MonoBehaviour
 
     private void Update()
     {
-        if(health <= 0 && tag != "Falcon")
+        if (health <= 0 && tag != "Falcon")
         {
             Destroy(gameObject);
         }

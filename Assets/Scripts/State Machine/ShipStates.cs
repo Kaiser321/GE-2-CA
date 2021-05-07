@@ -41,31 +41,45 @@ class FollowingLeader : State
 }
 
 
-//class Patrol : State
-//{
-//    FollowPath followPath;
-//    PathFinder pathFinder;
-//    public override void Enter()
-//    {
-//        followPath = owner.GetComponent<FollowPath>();
-//        pathFinder = owner.GetComponent<PathFinder>();
-//        owner.GetComponent<ShipController>().target = GameObject.Find("Millennium Falcon");
-//        pathFinder.end = owner.GetComponent<ShipController>().target.transform;
-//        followPath.enabled = true;
-//        pathFinder.enabled = true;
-//    }
+class TraverseAsteroidCluster : State
+{
+    FollowPath followPath;
+    PathFinder pathFinder;
+    ShipController shipController;
+    ObstacleAvoidance obstacleAvoidance;
+    public override void Enter()
+    {
+        followPath = owner.GetComponent<FollowPath>();
+        pathFinder = owner.GetComponent<PathFinder>();
+        shipController = owner.GetComponent<ShipController>();
+        obstacleAvoidance = owner.GetComponent<ObstacleAvoidance>();
+        pathFinder.end = shipController.target.transform;
+        pathFinder.enabled = true;
+        followPath.enabled = true;
+        obstacleAvoidance.enabled = true;
+    }
 
-//    public override void Think()
-//    {
+    public override void Think()
+    {
+        //Debug.Log("THINK");
+        if(!owner.GetComponent<ShipController>().foundPath)
+        {
+            if (Vector3.Distance(owner.transform.position, pathFinder.start.transform.position) <= 20)
+            {
+                pathFinder.enabled = false;
+                pathFinder.enabled = true;
+                owner.GetComponent<ShipController>().foundPath = true;
+            }
+        }
 
-//    }
+    }
 
-//    public override void Exit()
-//    {
-//        followPath.enabled = false;
-//        pathFinder.enabled = false;
-//    }
-//}
+    public override void Exit()
+    {
+        followPath.enabled = false;
+        pathFinder.enabled = false;
+    }
+}
 
 class FindFalcon : State
 {

@@ -203,7 +203,7 @@ class Scene6 : State
 
     public override void Think()
     {
-        if(falcon.GetComponent<ShipController>().health <= 80)
+        if (falcon.GetComponent<ShipController>().health <= 80)
         {
             owner.ChangeState(new Scene7());
         }
@@ -222,7 +222,7 @@ class Scene6 : State
         rand = Random.Range(0, 2);
         if (rand == 0)
         {
-            falcon.GetComponent<Boid>().maxSpeed = 10; 
+            falcon.GetComponent<Boid>().maxSpeed = 10;
         }
         else
         {
@@ -232,9 +232,9 @@ class Scene6 : State
 
     public override void Exit()
     {
+        owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
         falcon.GetComponent<NoiseWander>().enabled = false;
         falcon.GetComponent<Flee>().enabled = false;
-
     }
 }
 
@@ -245,64 +245,64 @@ class Scene7 : State
     Spawner spawner;
     GameObject tieLeader;
     GameObject sceneTarget;
+    GameObject startTarget;
     GameObject cluster;
+
     public override void Enter()
     {
 
         camera = owner.GetComponent<SceneController>().camera;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
-
         spawner = owner.GetComponent<Spawner>();
-        cluster = spawner.SpawnAsteroidCluster(falcon.transform.position + falcon.transform.forward * 50, new Vector3(100, 50, 500), 150);
+
+        cluster = spawner.SpawnAsteroidCluster(falcon.transform.position + falcon.transform.forward * 100, new Vector3(100, 50, 500), 150);
 
         sceneTarget = new GameObject("Target");
-        sceneTarget.transform.position = cluster.transform.position + cluster.transform.forward * 600;
-        falcon.GetComponent<Boid>().maxSpeed = 15;
-        falcon.GetComponent<ShipController>().target = sceneTarget;
-        falcon.GetComponent<PathFinder>().end = falcon.GetComponent<ShipController>().target.transform;
-        falcon.GetComponent<PathFinder>().enabled = true;
-        falcon.GetComponent<FollowPath>().enabled = true;
+        sceneTarget.transform.position = cluster.transform.position + cluster.transform.forward * 550;
+        startTarget = new GameObject("Start Target");
+        startTarget.transform.position = cluster.transform.position + cluster.transform.forward * (-20);
 
-        tieLeader.GetComponent<Pursue>().enabled = false;
+        falcon.GetComponent<ShipController>().target = sceneTarget;
+        falcon.GetComponent<PathFinder>().start = startTarget.transform;
+        falcon.GetComponent<StateMachine>().ChangeState(new TraverseAsteroidCluster());
+
         tieLeader.GetComponent<ShipController>().target = sceneTarget;
-        tieLeader.GetComponent<PathFinder>().end = tieLeader.GetComponent<ShipController>().target.transform;
-        tieLeader.GetComponent<ObstacleAvoidance>().enabled = true;
-        tieLeader.GetComponent<PathFinder>().enabled = true;
-        tieLeader.GetComponent<FollowPath>().enabled = true;
+        tieLeader.GetComponent<PathFinder>().start = startTarget.transform;
+        tieLeader.GetComponent<StateMachine>().ChangeState(new TraverseAsteroidCluster());
     }
 
-    //public override void Think()
-    //{
-    //    if (falcon.GetComponent<ShipController>().health <= 0)
-    //    {
-    //        owner.ChangeState(new Scene7());
-    //    }
+    public override void Think()
+    {
+        if (falcon.GetComponent<ShipController>().health <= 0)
+        {
+            owner.ChangeState(new Scene7());
+        }
 
-    //    int rand = Random.Range(0, 2);
-    //    if (rand == 0)
-    //    {
-    //        falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
-    //    }
-    //    else
-    //    {
-    //        tieLeader.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
-    //    }
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
+            falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        }
+        else
+        {
+            tieLeader.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        }
 
 
-    //    rand = Random.Range(0, 2);
-    //    if (rand == 0)
-    //    {
-    //        falcon.GetComponent<Boid>().maxSpeed = 10;
-    //    }
-    //    else
-    //    {
-    //        falcon.GetComponent<Boid>().maxSpeed = 12;
-    //    }
-    //}
+        rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
+            falcon.GetComponent<Boid>().maxSpeed = 10;
+        }
+        else
+        {
+            falcon.GetComponent<Boid>().maxSpeed = 12;
+        }
+    }
 
-    //public override void Exit()
-    //{
-    //    falcon.GetComponent<NoiseWander>().enabled = false;
-    //}
+    public override void Exit()
+    {
+        falcon.GetComponent<NoiseWander>().enabled = false;
+    }
 }
