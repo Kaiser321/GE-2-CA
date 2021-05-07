@@ -16,18 +16,29 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0, 0, Random.Range(speed-20, speed+20) * Time.deltaTime);
+        transform.Translate(0, 0, Random.Range(speed - 20, speed + 20) * Time.deltaTime);
+
+        CheckDamage(GameObject.FindGameObjectWithTag("Falcon"));
 
         GameObject[] ships = GameObject.FindGameObjectsWithTag(targetTag);
 
         foreach (GameObject ship in ships)
         {
-            if (Vector3.Distance(transform.position, ship.transform.position) < damageRadius)
-            {
-                ship.GetComponent<ShipController>().health -= 1;
-                Destroy(gameObject);
-                break;
-            }
+
+            CheckDamage(ship);
+
+        }
+
+    }
+
+    void CheckDamage(GameObject target)
+    {
+        if (Vector3.Distance(transform.position, target.transform.position) < damageRadius)
+        {
+
+            target.GetComponent<ShipController>().health -= 1;
+            Destroy(gameObject);
         }
     }
+
 }

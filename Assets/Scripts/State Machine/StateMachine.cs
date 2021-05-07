@@ -19,7 +19,7 @@ public class StateMachine : MonoBehaviour {
 
     private IEnumerator coroutine;
     
-    public int updatesPerSecond = 5;
+    public float updatesPerSecond = 5;
 	// Use this for initialization
 	void Start () {
         
@@ -93,7 +93,7 @@ public class StateMachine : MonoBehaviour {
                 currentState.Think();
             }
             
-            yield return new WaitForSeconds(1.0f / (float)updatesPerSecond);
+            yield return new WaitForSeconds(1.0f / updatesPerSecond);
         }
     }
 

@@ -176,7 +176,10 @@ class Fleeing : State
         falcon = GameObject.Find("Millennium Falcon");
         flee = owner.GetComponent<Flee>();
         flee.enabled = true;
+
         flee.targetGameObject = owner.GetComponent<ShipController>().target;
+
+
     }
 
     public override void Think()

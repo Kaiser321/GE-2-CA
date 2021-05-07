@@ -11,6 +11,7 @@ public class FalconController : MonoBehaviour
     public float range = 30;
     public GameObject laserBullet;
     public GameObject[] fireingPoints;
+    public GameObject[] cameraPositions;
 
     public void OnEnable()
     {
@@ -56,6 +57,15 @@ public class FalconController : MonoBehaviour
             }
             yield return new WaitForSeconds(1.0f / rateOfFire);
         }
+    }
+
+    public void AssignRandomCameraPosition(Camera cam)
+    {
+
+        GameObject camPos =  cameraPositions[Random.Range(0, cameraPositions.Length)];
+        cam.transform.parent = camPos.transform;
+        cam.transform.position = camPos.transform.position;
+        cam.transform.rotation = camPos.transform.rotation;
     }
 
     //public void Explode()

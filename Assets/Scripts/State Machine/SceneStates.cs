@@ -51,7 +51,7 @@ class Scene2 : State
         camera = owner.GetComponent<SceneController>().camera;
         falcon = owner.GetComponent<SceneController>().falcon;
 
-        camera.transform.position = new Vector3(0, falcon.transform.position.y+10, falcon.transform.position.z -10);
+        camera.transform.position = new Vector3(0, falcon.transform.position.y + 10, falcon.transform.position.z - 10);
         camera.transform.eulerAngles = new Vector3(20, 0, 0);
         sceneTarget = new GameObject("Target");
         sceneTarget.transform.position = new Vector3(falcon.transform.position.x, falcon.transform.position.y, falcon.transform.position.z + 75);
@@ -64,48 +64,245 @@ class Scene2 : State
     {
         if (Vector3.Distance(sceneTarget.transform.position, falcon.transform.position) <= 5)
         {
-            owner.ChangeState(new Pursuing());
+            owner.ChangeState(new Scene3());
         }
 
     }
 
     public override void Exit()
     {
+        owner.GetComponent<SceneController>().DestoryObject(sceneTarget);
+        falcon.GetComponent<Boid>().maxSpeed = 10;
         falcon.GetComponent<Seek>().enabled = false;
     }
 }
 
 
-//class Scene2 : State
-//{
-//    GameObject camera;
-//    GameObject falcon;
-//    GameObject sceneTarget;
-//    public override void Enter()
-//    {
-//        camera = owner.GetComponent<SceneController>().camera;
-//        falcon = owner.GetComponent<SceneController>().falcon;
+class Scene3 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject tieLeader;
+    public override void Enter()
+    {
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        spawner = owner.GetComponent<Spawner>();
 
-//        camera.transform.position = new Vector3(0, falcon.transform.position.y + 10, falcon.transform.position.z - 10);
-//        camera.transform.eulerAngles = new Vector3(20, 0, 0);
-//        sceneTarget = new GameObject("Target");
-//        sceneTarget.transform.position = new Vector3(falcon.transform.position.x, falcon.transform.position.y, falcon.transform.position.z + 75);
-//        falcon.GetComponent<Seek>().target = sceneTarget.transform.position;
-//        falcon.GetComponent<Seek>().enabled = true;
+        GameObject s = spawner.SpawnTIEFighterSquad(falcon.transform.position + new Vector3(-100, 0, 0), falcon.transform);
+        tieLeader = s.transform.Find("TIE-Fighter Leader").gameObject;
 
-//    }
+        camera.transform.position = s.transform.position + s.transform.forward * 10;
+        camera.GetComponent<FollowCamera>().target = tieLeader;
+        camera.GetComponent<FollowCamera>().enabled = true;
 
-//    public override void Think()
-//    {
-//        if (Vector3.Distance(sceneTarget.transform.position, falcon.transform.position) <= 5)
-//        {
-//            owner.ChangeState(new Pursuing());
-//        }
 
-//    }
+    }
 
-//    public override void Exit()
-//    {
-//        falcon.GetComponent<Seek>().enabled = false;
-//    }
-//}
+    public override void Think()
+    {
+        if (Vector3.Distance(tieLeader.transform.position, falcon.transform.position) <= 40)
+        {
+            owner.ChangeState(new Scene4());
+        }
+
+    }
+
+    public override void Exit()
+    {
+        falcon.GetComponent<ShipController>().target = tieLeader;
+        camera.GetComponent<FollowCamera>().enabled = false;
+    }
+}
+
+class Scene4 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject tieLeader;
+
+    public override void Enter()
+    {
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        falcon.GetComponent<StateMachine>().ChangeState(new Fleeing());
+
+        camera.transform.position = falcon.transform.position + falcon.transform.right * 15;
+        camera.GetComponent<FollowCamera>().target = falcon;
+        camera.GetComponent<FollowCamera>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (Vector3.Distance(camera.transform.position, falcon.transform.position) >= 70)
+        {
+            owner.ChangeState(new Scene5());
+        }
+    }
+
+    public override void Exit()
+    {
+        camera.GetComponent<FollowCamera>().enabled = false;
+    }
+}
+
+class Scene5 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject tieLeader;
+
+    public override void Enter()
+    {
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        tieLeader = falcon.GetComponent<ShipController>().target;
+
+        camera.transform.position = tieLeader.transform.position + tieLeader.transform.forward * 10;
+        camera.transform.LookAt(tieLeader.transform);
+        camera.transform.eulerAngles = new Vector3(-10, camera.transform.eulerAngles.y, camera.transform.eulerAngles.z);
+    }
+
+    public override void Think()
+    {
+        if (Vector3.Distance(camera.transform.position, tieLeader.transform.position) >= 15)
+        {
+            owner.ChangeState(new Scene6());
+        }
+    }
+
+    public override void Exit()
+    {
+        falcon.GetComponent<Boid>().maxSpeed = 10;
+        //camera.GetComponent<FollowCamera>().enabled = false;
+    }
+}
+
+class Scene6 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject tieLeader;
+
+    public override void Enter()
+    {
+
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        tieLeader = falcon.GetComponent<ShipController>().target;
+
+        falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        owner.GetComponent<StateMachine>().updatesPerSecond = 0.2f;
+        falcon.GetComponent<NoiseWander>().enabled = true;
+
+    }
+
+    public override void Think()
+    {
+        if(falcon.GetComponent<ShipController>().health <= 80)
+        {
+            owner.ChangeState(new Scene7());
+        }
+
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
+            falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        }
+        else
+        {
+            tieLeader.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        }
+
+
+        rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
+            falcon.GetComponent<Boid>().maxSpeed = 10; 
+        }
+        else
+        {
+            falcon.GetComponent<Boid>().maxSpeed = 12;
+        }
+    }
+
+    public override void Exit()
+    {
+        falcon.GetComponent<NoiseWander>().enabled = false;
+        falcon.GetComponent<Flee>().enabled = false;
+
+    }
+}
+
+class Scene7 : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject tieLeader;
+    GameObject sceneTarget;
+    GameObject cluster;
+    public override void Enter()
+    {
+
+        camera = owner.GetComponent<SceneController>().camera;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        tieLeader = falcon.GetComponent<ShipController>().target;
+
+        spawner = owner.GetComponent<Spawner>();
+        cluster = spawner.SpawnAsteroidCluster(falcon.transform.position + falcon.transform.forward * 50, new Vector3(100, 50, 500), 150);
+
+        sceneTarget = new GameObject("Target");
+        sceneTarget.transform.position = cluster.transform.position + cluster.transform.forward * 600;
+        falcon.GetComponent<Boid>().maxSpeed = 15;
+        falcon.GetComponent<ShipController>().target = sceneTarget;
+        falcon.GetComponent<PathFinder>().end = falcon.GetComponent<ShipController>().target.transform;
+        falcon.GetComponent<PathFinder>().enabled = true;
+        falcon.GetComponent<FollowPath>().enabled = true;
+
+        tieLeader.GetComponent<Pursue>().enabled = false;
+        tieLeader.GetComponent<ShipController>().target = sceneTarget;
+        tieLeader.GetComponent<PathFinder>().end = tieLeader.GetComponent<ShipController>().target.transform;
+        tieLeader.GetComponent<ObstacleAvoidance>().enabled = true;
+        tieLeader.GetComponent<PathFinder>().enabled = true;
+        tieLeader.GetComponent<FollowPath>().enabled = true;
+    }
+
+    //public override void Think()
+    //{
+    //    if (falcon.GetComponent<ShipController>().health <= 0)
+    //    {
+    //        owner.ChangeState(new Scene7());
+    //    }
+
+    //    int rand = Random.Range(0, 2);
+    //    if (rand == 0)
+    //    {
+    //        falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+    //    }
+    //    else
+    //    {
+    //        tieLeader.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+    //    }
+
+
+    //    rand = Random.Range(0, 2);
+    //    if (rand == 0)
+    //    {
+    //        falcon.GetComponent<Boid>().maxSpeed = 10;
+    //    }
+    //    else
+    //    {
+    //        falcon.GetComponent<Boid>().maxSpeed = 12;
+    //    }
+    //}
+
+    //public override void Exit()
+    //{
+    //    falcon.GetComponent<NoiseWander>().enabled = false;
+    //}
+}
