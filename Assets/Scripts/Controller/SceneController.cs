@@ -10,10 +10,28 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        GetComponent<StateMachine>().ChangeState(new Scene1());
+        GetComponent<StateMachine>().ChangeState(new BigBattle());
     }
 
-   public void DestoryObject(GameObject g)
+    void Update()
+    {
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            FPSCamera = !FPSCamera;
+            if (FPSCamera)
+            {
+                cam.GetComponent<FPSCamera>().enabled = true;
+            }
+            else
+            {
+                cam.GetComponent<FPSCamera>().enabled = false;
+            }
+
+        }
+    }
+
+    public void DestoryObject(GameObject g)
     {
         Destroy(g);
     }

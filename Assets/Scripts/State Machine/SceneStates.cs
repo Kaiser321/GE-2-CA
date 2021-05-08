@@ -349,20 +349,63 @@ class BigBattle : State
     Camera camera;
     GameObject falcon;
     Spawner spawner;
-    GameObject xwingLeader;
+    int xwingSquads = 10;
+    int tieSquads = 10;
 
     public override void Enter()
     {
-        owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
-
+        owner.GetComponent<StateMachine>().updatesPerSecond = 0.2f;
         camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         spawner = owner.GetComponent<Spawner>();
+
+
+        falcon.GetComponent<Boid>().maxSpeed = 5;
+        falcon.GetComponent<StateMachine>().ChangeState(new FindFalcon());
+
+
+
+
     }
 
     public override void Think()
     {
+        if (!owner.GetComponent<SceneController>().FPSCamera)
+        {
+            int rand = Random.Range(0, 3);
+            if (rand == 0)
+            {
+                falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+            }
+            else if (rand == 1)
+            {
+                if (spawner.xwings.Count > 0)
+                {
+                    spawner.xwings[Random.Range(0, spawner.xwings.Count)].GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+                }
 
+
+            }
+            else
+            {
+                if (spawner.ties.Count > 0)
+                {
+                    spawner.ties[Random.Range(0, spawner.ties.Count)].GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+                }
+
+            }
+        }
+
+        if (xwingSquads > 0)
+        {
+            spawner.SpawnXWingSquad(falcon.transform.position + (falcon.transform.up * Random.Range(-50, 50)) + (falcon.transform.forward * 150) + (falcon.transform.right * Random.Range(-50, 50)), falcon.transform);
+            xwingSquads -= 1;
+        }
+        if (tieSquads > 0)
+        {
+            spawner.SpawnTIEFighterSquad(falcon.transform.position + (falcon.transform.up * Random.Range(-50, 50)) + (falcon.transform.forward * -150) + (falcon.transform.right * Random.Range(-50, 50)), falcon.transform);
+            tieSquads -= 1;
+        }
 
 
     }
@@ -371,4 +414,5 @@ class BigBattle : State
     {
 
     }
+
 }

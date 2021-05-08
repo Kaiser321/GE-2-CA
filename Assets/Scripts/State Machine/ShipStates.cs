@@ -5,6 +5,7 @@ class FollowingLeader : State
     OffsetPursue offsetPursue;
     public override void Enter()
     {
+        owner.GetComponent<ShipController>().isShooing = false;
         offsetPursue = owner.GetComponent<OffsetPursue>();
         offsetPursue.enabled = true;
         offsetPursue.leader = owner.GetComponent<ShipController>().leader;
@@ -49,6 +50,7 @@ class TraverseAsteroidCluster : State
     ObstacleAvoidance obstacleAvoidance;
     public override void Enter()
     {
+        owner.GetComponent<ShipController>().isShooing = false;
         followPath = owner.GetComponent<FollowPath>();
         pathFinder = owner.GetComponent<PathFinder>();
         shipController = owner.GetComponent<ShipController>();
@@ -158,6 +160,7 @@ class Pursuing : State
     Pursue pursue;
     public override void Enter()
     {
+        owner.GetComponent<ShipController>().isShooing = false;
         pursue = owner.GetComponent<Pursue>();
         pursue.enabled = true;
         pursue.target = owner.GetComponent<ShipController>().target.GetComponent<Boid>();
@@ -200,10 +203,12 @@ class Pursuing : State
 
 class Fleeing : State
 {
+
     Flee flee;
     GameObject falcon;
     public override void Enter()
     {
+        owner.GetComponent<ShipController>().isShooing = false;
         falcon = GameObject.Find("Millennium Falcon");
         flee = owner.GetComponent<Flee>();
         flee.enabled = true;
@@ -215,7 +220,7 @@ class Fleeing : State
     {
         if (owner.tag == "Falcon")
         {
-
+            owner.ChangeState(new FindFalcon());
         }
         else
         {
