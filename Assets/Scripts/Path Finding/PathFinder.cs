@@ -39,7 +39,7 @@ public class PathFinder : MonoBehaviour
 
     public void OnEnable()
     {
-        Debug.Log("FINDING PATH");
+        //Debug.Log("FINDING PATH");
         FindPath(start.position, end.position);
 
     }

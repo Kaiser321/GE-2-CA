@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 963194227}
   falcon: {fileID: 3754766243399502280}
+  FPSCamera: 0
 --- !u!114 &376148964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +290,8 @@ MonoBehaviour:
   xwingPrefab: {fileID: 4014491410874902213, guid: 49b65b322e71d4cf39fe1483161523f8, type: 3}
   tiePrefab: {fileID: 4232613771410823812, guid: 3b45f09bb70b14a459534ea0f26bfb25, type: 3}
   asteriodPrefab: {fileID: 908152405562477426, guid: 5faf5abb5253849e9b9dbbf3dadceb7d, type: 3}
+  xwings: []
+  ties: []
 --- !u!4 &454615498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3600226993308565566, guid: 3b45f09bb70b14a459534ea0f26bfb25, type: 3}
@@ -946,6 +949,10 @@ PrefabInstance:
     - target: {fileID: 2906441088242482193, guid: 943e9797ac3a24edca81af9ce6219615, type: 3}
       propertyPath: m_Name
       value: Millennium Falcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337463861241890612, guid: 943e9797ac3a24edca81af9ce6219615, type: 3}
+      propertyPath: maxSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943e9797ac3a24edca81af9ce6219615, type: 3}

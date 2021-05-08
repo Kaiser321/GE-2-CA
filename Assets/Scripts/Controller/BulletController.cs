@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     public int time = 5;
     public string targetTag;
     public float damageRadius = 2.5f;
+    public ParticleSystem impactEffect;
 
     void Start()
     {
@@ -35,14 +36,11 @@ public class BulletController : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.transform.position) < damageRadius)
         {
-
+            ParticleSystem p = Instantiate(impactEffect, transform.position, transform.rotation);
+            p.GetComponent<ParticleSystemRenderer>().material = gameObject.GetComponent<TrailRenderer>().material;
             target.GetComponent<ShipController>().health -= 1;
             Destroy(gameObject);
         }
     }
 
-    void OnDestroy()
-    {
-        Debug.Log("OnDestroy1");
-    }
 }

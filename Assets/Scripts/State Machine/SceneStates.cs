@@ -13,7 +13,7 @@ class Scene1 : State
     GameObject sceneTarget;
     public override void Enter()
     {
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         falcon.transform.position = new Vector3(0, 0, 0);
         camera.transform.position = new Vector3(0, 0, 90);
@@ -48,7 +48,7 @@ class Scene2 : State
     GameObject sceneTarget;
     public override void Enter()
     {
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
 
         camera.transform.position = new Vector3(0, falcon.transform.position.y + 10, falcon.transform.position.z - 10);
@@ -86,7 +86,7 @@ class Scene3 : State
     GameObject tieLeader;
     public override void Enter()
     {
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         spawner = owner.GetComponent<Spawner>();
 
@@ -125,7 +125,7 @@ class Scene4 : State
 
     public override void Enter()
     {
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         falcon.GetComponent<StateMachine>().ChangeState(new Fleeing());
 
@@ -157,7 +157,7 @@ class Scene5 : State
 
     public override void Enter()
     {
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
 
@@ -191,7 +191,7 @@ class Scene6 : State
     public override void Enter()
     {
 
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
 
@@ -249,8 +249,7 @@ class Scene7 : State
 
     public override void Enter()
     {
-
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
         spawner = owner.GetComponent<Spawner>();
@@ -277,7 +276,10 @@ class Scene7 : State
         {
             owner.ChangeState(new Scene8());
         }
-        falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        else
+        {
+            falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
+        }
     }
 
     public override void Exit()
@@ -288,8 +290,6 @@ class Scene7 : State
         falcon.GetComponent<ShipController>().target = tieLeader;
         falcon.GetComponent<StateMachine>().ChangeState(new Fleeing());
         tieLeader.GetComponent<StateMachine>().ChangeState(new FindFalcon());
-        camera.transform.parent = null;
-        camera.GetComponent<FollowCamera>().enabled = true;
     }
 }
 
@@ -299,33 +299,71 @@ class Scene8 : State
     GameObject falcon;
     Spawner spawner;
     GameObject xwingLeader;
+
     public override void Enter()
     {
 
         owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
 
-        camera = owner.GetComponent<SceneController>().camera;
+        camera = owner.GetComponent<SceneController>().cam;
+        camera.transform.parent = null;
         falcon = owner.GetComponent<SceneController>().falcon;
         spawner = owner.GetComponent<Spawner>();
 
-        spawner.SpawnTIEFighterSquad(falcon.transform.position - (falcon.transform.forward * 200), falcon.transform);
+        //spawner.SpawnTIEFighterSquad(falcon.transform.position - (falcon.transform.forward * 200), falcon.transform);
 
+        foreach (GameObject t in spawner.ties)
+        {
+            t.transform.position = falcon.transform.position - (falcon.transform.forward * 100);
+            t.GetComponent<StateMachine>().ChangeState(new FindFalcon());
+        }
 
-        //foreach (GameObject t in spawner.ties)
-        //{
-        //    t.transform.position = falcon.transform.position - (falcon.transform.forward * 100);
-        //    t.GetComponent<StateMachine>().ChangeState(new FindFalcon());
-        //}
+        falcon.GetComponent<StateMachine>().ChangeState(new FindFalcon());
+        falcon.GetComponent<Boid>().maxSpeed = 5;
 
-        GameObject s = spawner.SpawnXWingSquad(falcon.transform.position + (falcon.transform.up  * 50) + (falcon.transform.forward * 100), falcon.transform);
+        GameObject s = spawner.SpawnXWingSquad(falcon.transform.position + (falcon.transform.up * 50) + (falcon.transform.forward * 100), falcon.transform);
         xwingLeader = s.transform.Find("X-wing Leader").gameObject;
+
+
+        camera.transform.position = s.transform.position + (s.transform.forward * 20) + (s.transform.up * 20) + (s.transform.right * 30);
         camera.GetComponent<FollowCamera>().enabled = true;
-        camera.transform.position = s.transform.position + (s.transform.forward * 20) + (s.transform.up * 20)+(s.transform.right * 30);
         camera.GetComponent<FollowCamera>().target = xwingLeader;
     }
 
     public override void Think()
     {
+        if (Vector3.Distance(xwingLeader.transform.position, falcon.transform.position) <= 30)
+        {
+            owner.ChangeState(new BigBattle());
+        }
+    }
+
+    public override void Exit()
+    {
+        camera.GetComponent<FollowCamera>().enabled = false;
+    }
+}
+
+class BigBattle : State
+{
+    Camera camera;
+    GameObject falcon;
+    Spawner spawner;
+    GameObject xwingLeader;
+
+    public override void Enter()
+    {
+        owner.GetComponent<StateMachine>().updatesPerSecond = 5f;
+
+        camera = owner.GetComponent<SceneController>().cam;
+        falcon = owner.GetComponent<SceneController>().falcon;
+        spawner = owner.GetComponent<Spawner>();
+    }
+
+    public override void Think()
+    {
+
+
 
     }
 

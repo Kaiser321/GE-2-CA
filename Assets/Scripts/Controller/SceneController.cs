@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    public Camera camera;
+    public Camera cam;
     public GameObject falcon;
+    public bool FPSCamera;
 
     void Start()
     {
-        GetComponent<StateMachine>().ChangeState(new Scene8());
+        GetComponent<StateMachine>().ChangeState(new Scene1());
     }
 
    public void DestoryObject(GameObject g)

@@ -62,7 +62,7 @@ class TraverseAsteroidCluster : State
     public override void Think()
     {
         //Debug.Log("THINK");
-        if(!owner.GetComponent<ShipController>().foundPath)
+        if (!owner.GetComponent<ShipController>().foundPath)
         {
             if (Vector3.Distance(owner.transform.position, pathFinder.start.transform.position) <= 20)
             {
@@ -91,30 +91,43 @@ class FindFalcon : State
         pursue.enabled = true;
         owner.GetComponent<ShipController>().target = GameObject.Find("Millennium Falcon");
         pursue.target = owner.GetComponent<ShipController>().target.GetComponent<Boid>();
+
+        if (owner.tag == "Falcon")
+        {
+            owner.GetComponent<NoiseWander>().enabled = true;
+        }
     }
 
     public override void Think()
     {
         string tag;
-        if (owner.gameObject.tag == "Tie-Fighter")
+        if (owner.tag == "Falcon")
         {
-            tag = "X-wing";
-            if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
-            {
-                owner.ChangeState(new Pursuing());
-            }
+            tag = "Tie-Fighter";
         }
         else
         {
-            tag = "Tie-Fighter";
-            if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+            if (owner.gameObject.tag == "Tie-Fighter")
             {
-                owner.GetComponent<ShipController>().leader = pursue.target;
-                owner.ChangeState(new FollowingLeader());
+                tag = "X-wing";
+                if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+                {
+                    owner.ChangeState(new Pursuing());
+                }
+            }
+            else
+            {
+                tag = "Tie-Fighter";
+                if (Vector3.Distance(owner.transform.position, pursue.target.transform.position) < 20)
+                {
+                    owner.GetComponent<ShipController>().leader = pursue.target;
+                    owner.ChangeState(new FollowingLeader());
+                }
             }
         }
-        GameObject[] ships = GameObject.FindGameObjectsWithTag(tag);
 
+
+        GameObject[] ships = GameObject.FindGameObjectsWithTag(tag);
 
         foreach (GameObject ship in ships)
         {
@@ -132,6 +145,10 @@ class FindFalcon : State
 
     public override void Exit()
     {
+        if (owner.tag == "Falcon")
+        {
+            owner.GetComponent<NoiseWander>().enabled = false;
+        }
         pursue.enabled = false;
     }
 }

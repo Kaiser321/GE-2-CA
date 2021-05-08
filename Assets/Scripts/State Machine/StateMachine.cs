@@ -33,7 +33,11 @@ public class StateMachine : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //s = currentState.GetType().Name;
+        if (currentState != null)
+        {
+            s = currentState.GetType().Name;
+        }
+
 
     }
 

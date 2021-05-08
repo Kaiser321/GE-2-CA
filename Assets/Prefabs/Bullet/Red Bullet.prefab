@@ -111,6 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   time: 1
+  targetTag: 
+  damageRadius: 2.5
+  impactEffect: {fileID: 3883999172350913965, guid: 0f8ad51e1b5e147b4a862f1ea31572de, type: 3}
 --- !u!96 &-2542758090795705444
 TrailRenderer:
   serializedVersion: 2
