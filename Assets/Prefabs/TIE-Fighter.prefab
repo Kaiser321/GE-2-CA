@@ -2107,6 +2107,7 @@ MonoBehaviour:
   - {fileID: 1487876099582543555}
   foundPath: 0
   spawner: {fileID: 0}
+  explosionEffect: {fileID: 1711069125027486189, guid: 46c936b6a9acc4d2cbf7d26cadf2bd25, type: 3}
   flyingAudioSource: {fileID: 6092153114976025109}
   shootingAudioSource: {fileID: 8634939180330465248}
   flyingBySounds:

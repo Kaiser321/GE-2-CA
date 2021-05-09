@@ -10,7 +10,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        GetComponent<StateMachine>().ChangeState(new BigBattle());
+        GetComponent<StateMachine>().ChangeState(new Scene1());
     }
 
     void Update()

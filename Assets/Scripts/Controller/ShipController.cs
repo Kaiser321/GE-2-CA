@@ -16,6 +16,7 @@ public class ShipController : MonoBehaviour
     public GameObject[] cameraPositions;
     public bool foundPath = false;
     public Spawner spawner;
+    public ParticleSystem explosionEffect;
     public AudioSource flyingAudioSource;
     public AudioSource shootingAudioSource;
     public AudioClip[] flyingBySounds;
@@ -104,6 +105,7 @@ public class ShipController : MonoBehaviour
         if (health <= 0 && tag != "Falcon")
         {
             PlaySound("Explode");
+            Instantiate(explosionEffect, transform.position, transform.rotation);
             gameObject.SetActive(false);
             spawner.RemoveShip(gameObject);
             Destroy(gameObject, 3);
