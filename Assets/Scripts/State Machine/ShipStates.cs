@@ -164,6 +164,11 @@ class Pursuing : State
         pursue = owner.GetComponent<Pursue>();
         pursue.enabled = true;
         pursue.target = owner.GetComponent<ShipController>().target.GetComponent<Boid>();
+        int ifPlaySound = Random.Range(0, 5);
+        if (ifPlaySound == 0)
+        {
+            owner.GetComponent<ShipController>().PlaySound("Flyby");
+        }
     }
 
     public override void Think()
@@ -212,8 +217,13 @@ class Fleeing : State
         falcon = GameObject.Find("Millennium Falcon");
         flee = owner.GetComponent<Flee>();
         flee.enabled = true;
-
         flee.targetGameObject = owner.GetComponent<ShipController>().target;
+        int ifPlaySound = Random.Range(0, 5);
+        if(ifPlaySound == 0)
+        {
+            owner.GetComponent<ShipController>().PlaySound("Flyby");
+        }
+
     }
 
     public override void Think()

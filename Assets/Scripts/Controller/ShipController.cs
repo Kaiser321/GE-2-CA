@@ -16,6 +16,11 @@ public class ShipController : MonoBehaviour
     public GameObject[] cameraPositions;
     public bool foundPath = false;
     public Spawner spawner;
+    public AudioSource flyingAudioSource;
+    public AudioSource shootingAudioSource;
+    public AudioClip[] flyingBySounds;
+    public AudioClip explodingSound;
+    public AudioClip[] shootingSounds;
 
     public void OnEnable()
     {
@@ -60,6 +65,7 @@ public class ShipController : MonoBehaviour
                 {
                     GameObject bullet = Instantiate(laserBullet, fp.transform.position, fp.transform.rotation);
                     bullet.GetComponent<BulletController>().targetTag = transform.tag == "Tie-Fighter" ? "X-wing" : "Tie-Fighter";
+                    PlaySound("Shooting");
                 }
 
             }
@@ -93,29 +99,37 @@ public class ShipController : MonoBehaviour
         cam.transform.rotation = camPos.transform.rotation;
     }
 
-    //public void Explode()
-    //{
-    //    gameObject.SetActive(false);
-
-    //    Destroy(gameObject,3);
-    //}
-
     private void Update()
     {
         if (health <= 0 && tag != "Falcon")
         {
+            PlaySound("Explode");
             gameObject.SetActive(false);
             spawner.RemoveShip(gameObject);
-            Destroy(gameObject,3);
+            Destroy(gameObject, 3);
         }
     }
 
 
+    public void PlaySound(string type)
+    {
+        AudioClip audioClip;
+        if (type == "Flyby")
+        {
+            audioClip = flyingBySounds[Random.Range(0, flyingBySounds.Length)];
+            flyingAudioSource.PlayOneShot(audioClip);
+        }
+        else if (type == "Shooting")
+        {
+            audioClip = shootingSounds[Random.Range(0, shootingSounds.Length)];
+            shootingAudioSource.PlayOneShot(audioClip);
+        }
+        else
+        {
+            audioClip = explodingSound;
+            flyingAudioSource.PlayOneShot(audioClip);
+        }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log(other);
-    //}
-
+    }
 }
 

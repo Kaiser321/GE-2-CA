@@ -15,7 +15,6 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKey(KeyCode.Space))
         {
             FPSCamera = !FPSCamera;
@@ -27,7 +26,6 @@ public class SceneController : MonoBehaviour
             {
                 cam.GetComponent<FPSCamera>().enabled = false;
             }
-
         }
     }
 

@@ -27,8 +27,10 @@ class Scene1 : State
 
     public override void Think()
     {
+
         if (Vector3.Distance(sceneTarget.transform.position, falcon.transform.position) <= 5)
         {
+            falcon.GetComponent<ShipController>().PlaySound("Flyby");
             owner.ChangeState(new Scene2());
         }
 
@@ -92,7 +94,7 @@ class Scene3 : State
 
         GameObject s = spawner.SpawnTIEFighterSquad(falcon.transform.position + new Vector3(-100, 0, 0), falcon.transform);
         tieLeader = s.transform.Find("TIE-Fighter Leader").gameObject;
-
+        tieLeader.GetComponent<ShipController>().PlaySound("Flyby");
         camera.transform.position = s.transform.position + s.transform.forward * 10;
         camera.GetComponent<FollowCamera>().target = tieLeader;
         camera.GetComponent<FollowCamera>().enabled = true;
@@ -128,7 +130,7 @@ class Scene4 : State
         camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         falcon.GetComponent<StateMachine>().ChangeState(new Fleeing());
-
+        falcon.GetComponent<ShipController>().PlaySound("Flyby");
         camera.transform.position = falcon.transform.position + falcon.transform.right * 15;
         camera.GetComponent<FollowCamera>().target = falcon;
         camera.GetComponent<FollowCamera>().enabled = true;
@@ -160,7 +162,7 @@ class Scene5 : State
         camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
-
+        tieLeader.GetComponent<ShipController>().PlaySound("Flyby");
         camera.transform.position = tieLeader.transform.position + tieLeader.transform.forward * 10;
         camera.transform.LookAt(tieLeader.transform);
         camera.transform.eulerAngles = new Vector3(-10, camera.transform.eulerAngles.y, camera.transform.eulerAngles.z);
@@ -194,7 +196,6 @@ class Scene6 : State
         camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
         tieLeader = falcon.GetComponent<ShipController>().target;
-
         falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
         owner.GetComponent<StateMachine>().updatesPerSecond = 0.2f;
         falcon.GetComponent<NoiseWander>().enabled = true;
@@ -263,6 +264,7 @@ class Scene7 : State
 
         falcon.GetComponent<ShipController>().target = sceneTarget;
         falcon.GetComponent<PathFinder>().start = startTarget.transform;
+        falcon.GetComponent<StateMachine>().enabled = true;
         falcon.GetComponent<StateMachine>().ChangeState(new TraverseAsteroidCluster());
 
         tieLeader.GetComponent<ShipController>().target = sceneTarget;
@@ -278,6 +280,7 @@ class Scene7 : State
         }
         else
         {
+            falcon.GetComponent<ShipController>().PlaySound("Flyby");
             falcon.GetComponent<ShipController>().AssignRandomCameraPosition(camera);
         }
     }
@@ -310,8 +313,6 @@ class Scene8 : State
         falcon = owner.GetComponent<SceneController>().falcon;
         spawner = owner.GetComponent<Spawner>();
 
-        //spawner.SpawnTIEFighterSquad(falcon.transform.position - (falcon.transform.forward * 200), falcon.transform);
-
         foreach (GameObject t in spawner.ties)
         {
             t.transform.position = falcon.transform.position - (falcon.transform.forward * 100);
@@ -324,7 +325,7 @@ class Scene8 : State
         GameObject s = spawner.SpawnXWingSquad(falcon.transform.position + (falcon.transform.up * 50) + (falcon.transform.forward * 100), falcon.transform);
         xwingLeader = s.transform.Find("X-wing Leader").gameObject;
 
-
+        xwingLeader.GetComponent<ShipController>().PlaySound("Flyby");
         camera.transform.position = s.transform.position + (s.transform.forward * 20) + (s.transform.up * 20) + (s.transform.right * 30);
         camera.GetComponent<FollowCamera>().enabled = true;
         camera.GetComponent<FollowCamera>().target = xwingLeader;
@@ -359,13 +360,8 @@ class BigBattle : State
         falcon = owner.GetComponent<SceneController>().falcon;
         spawner = owner.GetComponent<Spawner>();
 
-
         falcon.GetComponent<Boid>().maxSpeed = 5;
         falcon.GetComponent<StateMachine>().ChangeState(new FindFalcon());
-
-
-
-
     }
 
     public override void Think()
@@ -406,13 +402,10 @@ class BigBattle : State
             spawner.SpawnTIEFighterSquad(falcon.transform.position + (falcon.transform.up * Random.Range(-50, 50)) + (falcon.transform.forward * -150) + (falcon.transform.right * Random.Range(-50, 50)), falcon.transform);
             tieSquads -= 1;
         }
-
-
     }
 
     public override void Exit()
     {
 
     }
-
 }
