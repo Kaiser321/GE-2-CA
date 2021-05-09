@@ -68,7 +68,6 @@ class Scene2 : State
         {
             owner.ChangeState(new Scene3());
         }
-
     }
 
     public override void Exit()
@@ -122,8 +121,6 @@ class Scene4 : State
 {
     Camera camera;
     GameObject falcon;
-    Spawner spawner;
-    GameObject tieLeader;
 
     public override void Enter()
     {
@@ -351,7 +348,7 @@ class BigBattle : State
     GameObject falcon;
     Spawner spawner;
     int xwingSquads = 10;
-    int tieSquads = 10;
+    int tieSquads = 8;
 
     public override void Enter()
     {
@@ -402,6 +399,53 @@ class BigBattle : State
             spawner.SpawnTIEFighterSquad(falcon.transform.position + (falcon.transform.up * Random.Range(-50, 50)) + (falcon.transform.forward * -150) + (falcon.transform.right * Random.Range(-50, 50)), falcon.transform);
             tieSquads -= 1;
         }
+
+        if (spawner.ties.Count <= 0 && tieSquads <= 0)
+        {
+            owner.ChangeState(new LastScene());
+        }
+    }
+
+    public override void Exit()
+    {
+        foreach (GameObject x in spawner.xwings)
+        {
+            x.GetComponent<ShipController>().isShooing = false;
+        }
+    }
+}
+
+class LastScene : State
+{
+    Camera camera;
+    GameObject falcon;
+    GameObject sceneTarget;
+
+    public override void Enter()
+    {
+        camera = owner.GetComponent<SceneController>().cam;
+        falcon = owner.GetComponent<SceneController>().falcon;
+
+        sceneTarget = new GameObject("Start Target");
+        sceneTarget.transform.position = falcon.transform.position + falcon.transform.forward * (100);
+
+        falcon.GetComponent<Boid>().maxSpeed = 10;
+        falcon.GetComponent<StateMachine>().enabled = false;
+        falcon.GetComponent<NoiseWander>().enabled = false;
+        falcon.GetComponent<Seek>().target = sceneTarget.transform.position;
+        falcon.GetComponent<Seek>().enabled = true;
+
+        camera.transform.position = new Vector3(0, falcon.transform.position.y, falcon.transform.position.z - 20);
+        camera.transform.rotation = falcon.transform.rotation;
+    }
+
+    public override void Think()
+    {
+        if (Vector3.Distance(falcon.transform.position, sceneTarget.transform.position) <= 20)
+        {
+            Application.Quit();
+        }
+
     }
 
     public override void Exit()
