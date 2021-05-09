@@ -201,7 +201,7 @@ class Scene6 : State
 
     public override void Think()
     {
-        if (falcon.GetComponent<ShipController>().health <= 50)
+        if (falcon.GetComponent<ShipController>().health <= 30)
         {
             owner.ChangeState(new Scene7());
         }
