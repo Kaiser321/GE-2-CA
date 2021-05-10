@@ -420,9 +420,17 @@ class LastScene : State
     Camera camera;
     GameObject falcon;
     GameObject sceneTarget;
+    Spawner spawner;
 
     public override void Enter()
     {
+        spawner = owner.GetComponent<Spawner>();
+
+        foreach (GameObject x in spawner.xwings)
+        {
+            x.GetComponent<ShipController>().isShooing = false;
+        }
+
         camera = owner.GetComponent<SceneController>().cam;
         falcon = owner.GetComponent<SceneController>().falcon;
 
@@ -441,7 +449,7 @@ class LastScene : State
 
     public override void Think()
     {
-        if (Vector3.Distance(falcon.transform.position, sceneTarget.transform.position) <= 20)
+        if (Vector3.Distance(falcon.transform.position, sceneTarget.transform.position) <= 30)
         {
             Application.Quit();
         }

@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
             FPSCamera = !FPSCamera;
             if (FPSCamera)
             {
+                cam.GetComponent<FollowCamera>().enabled = false;
                 cam.GetComponent<FPSCamera>().enabled = true;
             }
             else
