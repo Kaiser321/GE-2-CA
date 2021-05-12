@@ -9,13 +9,17 @@ Course Code: TU858/4
 
 The crew onboard of the Millennium Falcon was making way to the ice planet Hoth at the Anoat sector. However they were unaware that they were followed by an small squadron of elite imperial TIE fighters and was then ambushed.  The falcon crew performed quick evasive maneuvers in order to shake off the pursuers. Responding to the stress signal a squad of rebel X-Wings has arrived to the battle to fend off the imperial starfighters. With the combined forces of rebels they successfully won the skirmish.
 
-## Inspirations
-[![YouTube](http://img.youtube.com/vi/mSvPxNopdHs/0.jpg)](https://youtu.be/mSvPxNopdHs)
-[![YouTube](http://img.youtube.com/vi/8sarFZJl3h0/0.jpg)](https://youtu.be/8sarFZJl3h0)
-[![YouTube](http://img.youtube.com/vi/c8deRYotdng/0.jpg)](https://youtu.be/c8deRYotdng)
+# Video
+[![YouTube](http://img.youtube.com/vi/ksTK8cmIPF0/0.jpg)](https://youtu.be/ksTK8cmIPF0)
+
+
 
 ## Elements
 
 
 ## Storyboard
 
+## Inspirations
+[![YouTube](http://img.youtube.com/vi/mSvPxNopdHs/0.jpg)](https://youtu.be/mSvPxNopdHs)
+[![YouTube](http://img.youtube.com/vi/8sarFZJl3h0/0.jpg)](https://youtu.be/8sarFZJl3h0)
+[![YouTube](http://img.youtube.com/vi/c8deRYotdng/0.jpg)](https://youtu.be/c8deRYotdng)
