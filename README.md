@@ -64,3 +64,14 @@ The Rebels appears victorious from the skirmish and flies away.
 [![YouTube](http://img.youtube.com/vi/mSvPxNopdHs/0.jpg)](https://youtu.be/mSvPxNopdHs)
 [![YouTube](http://img.youtube.com/vi/8sarFZJl3h0/0.jpg)](https://youtu.be/8sarFZJl3h0)
 [![YouTube](http://img.youtube.com/vi/c8deRYotdng/0.jpg)](https://youtu.be/c8deRYotdng)
+
+## Resources
+"Millennium Falcon" (https://skfb.ly/6qLJP) by Stym is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
+
+"X-Wing - by Greta Pastorino" (https://skfb.ly/QFnr) by AIV is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"TIE-fighter from STAR WARS" (https://skfb.ly/6QZPZ) by Ilyas.King is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"asteroid" (https://skfb.ly/COwN) by admone is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+All sound effect from "STAR WARS SOUND EFFECTS" from soundboard.com (https://www.soundboard.com/sb/starwarsfx).
