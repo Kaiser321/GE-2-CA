@@ -55,7 +55,7 @@ A squad of X-Wings appear and flies towards to Falcon.
 ### Scene 8
 More X-Wings and TIE-Fighters appear and a big battle happens.
 ![alt text](https://github.com/Kaiser321/GE-2-CA/blob/main/Storyboard/8.png)
-### Scene 8
+### Scene 9
 The Rebels appears victorious from the skirmish and flies away. 
 ![alt text](https://github.com/Kaiser321/GE-2-CA/blob/main/Storyboard/9.png)
 
