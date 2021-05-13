@@ -19,6 +19,9 @@ The crew onboard of the Millennium Falcon was making way to the ice planet Hoth 
 
 ## Storyboard
 
+![alt text](https://github.com/Kaiser321/GE-2-CA/blob/main/Storyboard/1.png)
+
+
 ## Inspirations
 [![YouTube](http://img.youtube.com/vi/mSvPxNopdHs/0.jpg)](https://youtu.be/mSvPxNopdHs)
 [![YouTube](http://img.youtube.com/vi/8sarFZJl3h0/0.jpg)](https://youtu.be/8sarFZJl3h0)
