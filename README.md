@@ -18,6 +18,27 @@ The crew onboard of the Millennium Falcon was making way to the ice planet Hoth 
 ### Boids
 All the ships movements are implemented using several steering behaviors. Behaviors such as Pursuing, Fleeing and Offset Pursue was used. Path Finding using A Star algorithm and Obstacle Avoidance was used for traversing through the asteroid field. Each fighter squad consists of 3 ships with 1 leader. Offset Pursue was used for the rest of the ships in the squad to follow the leader and move in formation.
 
+### Steering Behaviors
+Steering Behaviors used for the ships are:
+* Seek
+* Pursue
+* Flee
+* Follow Path
+* Obstacle Avoidance
+* Path Finding
+* Noise Wander
+
+### Custom Scripts
+These following scripts are custom made scripts for this project:
+* ShipStates - States for the ship behaviors
+* SceneStates - States for playing out each scene
+* ShipController - Controller for X-Wing and TIE-Fighter ships
+* FalconController - Controller for the Falcon
+* SceneController - Controller to play out each scene and moving cameras
+* BulletController - Controller for laser bullets and detect on hit
+* Spawner - Spawns squads of X-Wings and TIE-Fighters at an given location
+
+
 ### Finite State Machine
 A state machine was implemented the behaviors of the ships. Each ship has 6 states.
 * FollowingLeader - Ship follows squad leader using offset pursue.
@@ -29,6 +50,9 @@ A state machine was implemented the behaviors of the ships. Each ship has 6 stat
 Each ship has a controller script `ShipController` attached with contains it's health, rate of fire and the range of attack.
 
 A state machine was also used to play the scenes. Each scene is a state and when an event triggers in a scene the next scene is played. This is contained in the `SceneController` script.
+
+### Trail Renderer
+Trail renderer was used to add effects to the bullets to recreate the laser effect from the movie. It was also added to the Falcon and X-Wings for additional flying effects.
 
 ## Storyboard
 ### Scene 1
